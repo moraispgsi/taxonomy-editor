@@ -1,0 +1,7 @@
+The javascript files in this folder are dependent of the following files:
+
+framework-core.js
+flow-object.js
+flow-sockets-components.js
+
+framework-core.css

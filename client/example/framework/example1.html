@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flow framework</title>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-core/css/framework-core.css"/>
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-extensions/css/flow-object.css"/>
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/html-builder/css/html-builder-core.css"/>
+    
+    <script src="ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-core/js/framework-core.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-extensions/js/flow-object.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-extensions/js/flow-sockets-components.js"></script>
+    
+    <script src="https://framework-moraispgsi.c9users.io/client/microworld-simulator/js/simulator-core.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/html-builder/js/html-buider-core.js"></script>
+
+</head>
+
+<body>
+    <script>
+    
+        var flowCanvas = new HTMLCodeBuilder('MyHTML',1000, 600);
+        document.body.appendChild(flowCanvas.element);
+
+        //var flowObject1 = new FlowObjectHTMLSimpleLiteral(flowCanvas, "MyDivID","MyDiv",600,400);
+        var flowObject2 = new JSObjectCreateFlowObject(flowCanvas, "MyDiv2ID","MyDiv2",200,200);
+        
+        var flowObject4 = new ElementAppendChildFlowObject(flowCanvas, "MyDiv4ID","MyDiv4",200,200);
+
+        var simulator = new MicroWorldBuilder('Simulator',1000, 600);
+        document.body.appendChild(simulator.element);
+        
+        simulator.createStateMachine('StateMachine1','Red', ['Red','Blue','Yellow']);
+        var sm1 = simulator.createReference('StateMachine1');
+        
+        simulator.createStateMachine('StateMachine2','Red', ['Walk','DontWalk']);
+        var sm2 = simulator.createReference('StateMachine2');
+        var sm3 = simulator.createReference('StateMachine2');
+        
+        
+        function build(){
+            var flowObject6 = new FlowObject("a3","a3");
+            var div2 = document.createElement('div');
+            flowObject6.element.appendChild(div2);
+            flowObject6.addToFlowCanvas(flowCanvas);
+            
+            var textArea = document.createElement('textarea');
+            div2.appendChild(textArea);
+            
+            var slider3 = new ObserverFlowSocket(false,flowCanvas,180,40);
+            div2.appendChild(slider3.element);
+            flowObject6.bindFlowSocket(slider3);
+            
+            slider3.onChangeActions.push(function(socket, value){
+                textArea.value = value;
+            });
+        }
+        
+        build();
+        build();
+
+    </script>
+</body>
+</html>
+            
+            

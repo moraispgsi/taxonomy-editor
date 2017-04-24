@@ -1,0 +1,78 @@
+ .wire-hierarchy-flow-canvas .flow-canvas {
+  background: rgb(247, 247, 247);
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-circle.accepting {
+  stroke: rgb(66, 74, 94);
+  animation: dash 2s infinite linear;
+  stroke-dasharray: 2, 1;
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-circle.action {
+  stroke: rgb(66, 74, 94);
+  animation: dash 2s infinite linear;
+  stroke-dasharray: 2, 1;
+ }
+ 
+ @keyframes dash {
+  0% {
+   stroke-dashoffset: 0;
+  }
+  100% {
+   stroke-dashoffset: 15;
+  }
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-circle {
+  stroke: rgb(66, 74, 94);
+  stroke-width: 2px;
+  fill: white;
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-circle.connected {
+  fill: #ffca00;
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-circle.required {
+  stroke: rgb(93, 13, 13);
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-cubic-line {
+  stroke: #b6b6b6;
+  stroke-width: 3;
+  fill: transparent;
+  stroke-dasharray: 5, 1;
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-connection {
+  stroke: #ffca00;
+  stroke-width: 3;
+  fill: transparent;
+  stroke-dasharray: 5, 1;
+ }
+ 
+ .wire-hierarchy-flow-canvas .flow-socket-connection:hover {
+  stroke: rgb(250, 230, 154);
+ }
+ 
+ .wire-hierarchy-flow-canvas .wire-hierarchy-node-title {
+  color: rgb(255, 255, 255);
+  font-size: 11pt;
+  padding-top: 10px;
+  padding-bottom: 10px;
+ }
+ 
+ .wire-hierarchy-flow-canvas .wire-hierarchy-node {
+  border-radius: 30px;
+ }
+ 
+ .wire-hierarchy-flow-canvas .simple.round-bottom {
+  border-radius: 0 0 0px 0px;
+ }
+ 
+ .wire-hierarchy-flow-canvas .wire-hierarchy-node-draggable-area {
+  border-radius: 30px;
+  background: none;
+  background-color: #454c60;
+ }
+ 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flow framework</title>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-core/css/framework-core.css" />
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-extensions/css/flow-object.css" />
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-extensions/css/flow-object-light-theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-extensions/css/wire-hierarchy-node.css" />
+    <link rel="stylesheet" type="text/css" href="https://framework-moraispgsi.c9users.io/client/framework-extensions/css/wire-hierarchy-node-light-theme.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.6-dist/css/bootstrap.min.css" />
+
+    <style>
+    
+        body {
+            margin: 0;
+        }
+        
+        .app {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            margin: 0;
+        }
+
+        #content {
+            position: absolute;
+            left: 15vw;
+            top: 0;
+            width: 85vw;
+            height: 100vh;
+            padding: 0;
+        }
+        
+        #content> div {
+            width: 85vw;
+            height: 100vh;
+        }
+
+        #component-picker {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 15vw;
+            height: 100vh;
+            background-color: whitesmoke;
+            margin: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            overflow: auto;
+        }
+        
+        #component-finder-bar {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        #component-picker .listItem {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+        
+        .component-item-title {
+            color: #4c4c4c;
+            font-weight: bold;
+        }
+        
+        .component-item-description {
+            color: #636363;
+        }
+        
+        
+    </style>
+
+    <script src="ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-core/js/framework-core.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-extensions/js/flow-object.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-extensions/js/flow-sockets-components.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/framework-extensions/js/wire-hierarchy-node.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/generic-utils/js/event-dispatcher.js"></script>
+    <script src="https://framework-moraispgsi.c9users.io/client/ontology-core/js/ontology-core.js"></script>
+    <script src="js/ontology-wrappers.js"></script>
+    <script src="js/component-finder.js"></script>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="app">
+
+
+        <div id="component-picker">
+
+            <div class="container-fluid">
+
+                <div id="component-finder-bar" class="input-group input-group-sm">
+                    <input id="component-finder" placeholder="Component" type="text" class="form-control">
+                    <span id="component-picker-number-results" class="input-group-addon"></span>
+                </div>
+
+                <div id="component-picker-list" class="nav nav-pills nav-stacked">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="content"></div>
+
+
+
+        <script>
+            var ontology = new Ontology("https://www.example.com/");
+            var ontologyClassHierarchyCanvas = new OntologyClassHierarchyFlowCanvas(ontology);
+            document.getElementById("content").appendChild(ontologyClassHierarchyCanvas.element);
+
+            ontology.createOntClass("semaphore");
+            ontology.createOntClass("ryg-semaphore");
+            ontology.createOntClass("pedestrian-semaphore");
+            ontology.createOntClass("ryg-semaphore-red");
+            ontology.createOntClass("ryg-semaphore-yellow");
+            ontology.createOntClass("ryg-semaphore-green");
+            ontology.createOntClass("pedestrian-semaphore-walk");
+            ontology.createOntClass("pedestrian-semaphore-dont-walk");
+
+
+            var manifest = {};
+
+            var ontClasses = ontology.getOntClasses();
+            Object.keys(ontClasses).forEach(function(relativeIRI) {
+
+                manifest[relativeIRI] = {};
+                manifest[relativeIRI].title = relativeIRI;
+                manifest[relativeIRI].description = 'Creates a reference wrapper to an OntClass';
+                manifest[relativeIRI].keywords = [];
+                manifest[relativeIRI].create = function() {
+                    var wrapper = new WireHierarchyNode(ontologyClassHierarchyCanvas,false,true,relativeIRI);//new OntClassFlowObject(ontologyCanvas, ontClasses[relativeIRI]);
+                    return wrapper;
+                };
+                manifest[relativeIRI].createOnce = true;
+
+            });
+
+
+            var classFactory = new ComponentFactory(manifest);
+
+            var classFinder = document.getElementById("component-finder");
+            var classPickerList = document.getElementById("component-picker-list");
+
+            function updatePickerList() {
+
+                //Clear children
+                while (classPickerList.firstChild) {
+                    classPickerList.removeChild(classPickerList.firstChild);
+                }
+
+                var filteredResources = classFactory.getResourceListFiltered(classFinder.value);
+
+                var numberOfResultsSpan = document.getElementById("component-picker-number-results");
+
+                numberOfResultsSpan.textContent = filteredResources.length + ' results';
+
+                filteredResources.forEach(function(resource) {
+
+                    var listItem = document.createElement('li');
+                    listItem.className = 'listItem';
+                    listItem.type = 'button';
+                    listItem.role = 'presentation';
+
+                    var listItemLink = document.createElement('a');
+                    listItem.appendChild(listItemLink);
+
+                    var resourceInfo = classFactory.getResourceInfo(resource);
+
+                    var title = document.createElement('h6');
+                    title.className = 'list-group-item-heading text-primary component-item-title';
+                    title.textContent = resourceInfo.title;
+                    listItemLink.appendChild(title);
+
+                    var paragraph = document.createElement('small');
+                    paragraph.className = 'list-group-item-text text-info component-item-description';
+                    paragraph.textContent = resourceInfo.description;
+                    listItemLink.appendChild(paragraph);
+
+                    listItemLink.onclick = function() {
+                        classFactory.create(resource);
+                    }
+
+                    classPickerList.appendChild(listItem);
+
+                    classFactory.addEventListener('resourceReleased', function(e) {
+
+                        if (e.resource === resource) {
+                            updatePickerList();
+                        }
+
+                    });
+
+                });
+
+            }
+
+            updatePickerList();
+
+            classFinder.addEventListener('keyup', function() {
+
+                updatePickerList();
+
+            });
+        </script>
+</body>
+
+</html>

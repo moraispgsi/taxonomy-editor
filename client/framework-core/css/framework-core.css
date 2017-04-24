@@ -1,0 +1,83 @@
+ .flow-canvas {
+  position: relative;
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc', GradientType=0);
+  /* IE6-9 */
+  padding: 0;
+  overflow: hidden;
+ }
+ 
+ .flow-canvas .flow-draggable {
+  display: block;
+  position: absolute;
+  background-color: #666;
+  color: white;
+  padding: 0;
+  margin: 0;
+  top: 50px;
+  left: 50px;
+ }
+ 
+ .flow-canvas .flow-draggable:hover {
+  cursor: pointer;
+ }
+ 
+ .flow-canvas .flow-canvas-svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  /*pointer-events: none;*/
+ }
+ 
+ .flow-canvas .flow-cubic-line {
+  stroke: #b6b6b6;
+  stroke-width: 5;
+  fill: transparent;
+ }
+ 
+ .flow-canvas .flow-cubic-line:hover {
+  cursor: pointer;
+ }
+ 
+ .flow-canvas .flow-socket-svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  padding: 0;
+  margin: 0;
+ }
+ 
+ .flow-canvas .flow-socket-svg:hover {
+  cursor: pointer;
+ }
+ 
+ .flow-canvas .flow-socket-connection {
+  stroke: lightskyblue;
+  stroke-width: 3;
+  fill: transparent;
+ }
+ 
+ .flow-canvas .flow-socket-connection:hover {
+  stroke-width: 4;
+  cursor: pointer;
+ }
+ 
+ .flow-socket-circle {
+  stroke: rgba(0, 0, 0, 0.1);
+  stroke-width: 2px;
+  fill: transparent;
+ }
+ 
+ .flow-canvas .flow-socket-circle.accepting {
+  stroke: white;
+ }
+ 
+ .flow-canvas .flow-socket-circle.action {
+  fill: #b6b6b6;
+ }
+ 
+ .flow-canvas .flow-socket-circle.connected {
+  fill: lightskyblue;
+ }

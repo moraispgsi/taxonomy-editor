@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#"
+     xml:base="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:base="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#">
+    <owl:Ontology rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#maxCardinality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#maxCardinality"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#minQualifiedCardinality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#minQualifiedCardinality"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#connectedTo -->
+
+    <owl:ObjectProperty rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#connectedTo">
+        <rdfs:domain rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+        <rdfs:range rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygState -->
+
+    <owl:ObjectProperty rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygState">
+        <rdfs:domain rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green"/>
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red"/>
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walkState -->
+
+    <owl:ObjectProperty rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walkState">
+        <rdfs:domain rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk"/>
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-flowing -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-flowing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygState"/>
+                                <owl:allValuesFrom rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygState"/>
+                                <owl:allValuesFrom rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-not-flowing"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green">
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-not-flowing -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-not-flowing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygState"/>
+                        <owl:allValuesFrom rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red">
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow">
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#connectedTo"/>
+                                <owl:allValuesFrom rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-flowing"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walkState"/>
+                                <owl:hasValue rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#connectedTo"/>
+                                <owl:allValuesFrom rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-not-flowing"/>
+                            </owl:Restriction>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walkState"/>
+                                <owl:hasValue rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk"/>
+                            </owl:Restriction>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk">
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+        <owl:disjointWith rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk"/>
+    </owl:Class>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk -->
+
+    <owl:Class rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk">
+        <rdfs:subClassOf rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#a -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#a">
+        <rdf:type rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore"/>
+        <rygState rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#b -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#b">
+        <rdf:type rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore"/>
+        <connectedTo rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygSem1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green"/>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red"/>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow"/>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygSem1 -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#rygSem1">
+        <rdf:type rdf:resource="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-not-flowing"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-dont-walk"/>
+    
+
+
+    <!-- https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk -->
+
+    <owl:NamedIndividual rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#walk-semaphore-state-walk"/>
+    <rdf:Description>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+    </rdf:Description>
+    <rdf:Description>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
+    </rdf:Description>
+    <rdf:Description>
+        <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-green"/>
+            <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-red"/>
+            <rdf:Description rdf:about="https://framework-moraispgsi.c9users.io/client/example/ontology/semaphore.rdf#ryg-semaphore-state-yellow"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi -->
+

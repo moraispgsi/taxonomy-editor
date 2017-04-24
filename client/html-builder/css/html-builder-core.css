@@ -1,0 +1,5 @@
+.resize {
+    position: absolute;
+    top: calc(5px + 100%);
+    left: calc(5px + 100%);
+}
